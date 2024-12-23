@@ -3,9 +3,11 @@
 
 void conversor (){
     
-    int t;
+    //Defini as variáveis: "c" para o usuário escolher a conversão, "v" para o valor que será convertido e "r" para o resultado da conversão
+    int c;
     float v, r;
 
+        //Utilizei novamente o "do" para evitar que o usuário digite um valor inválido
         do{
 
             printf("---------------------------\n");
@@ -16,20 +18,19 @@ void conversor (){
             printf("5 - t para kg\n");
             printf("6 - t para g\n");
             printf("---------------------------\n");
-            scanf("%d", &t);
+            scanf("%d", &c);
 
-            if(t>6){
+            if(c>6){
                 printf("Valor inválido!\n");
             }
             else{
             printf("Valor para converter: ");
             scanf("%f", &v);
             }
+        
+        }while(c>6);
             
-        }while(t>6);
-            
-
-            switch (t)
+            switch (c)
             {
             case 1:
                 r = v/1000;
@@ -62,10 +63,13 @@ void conversor (){
 }
 int main(){
 
-    setlocale(LC_ALL, "portugese");
+    //Utilizei a biblioteca locale.h para poder usar a acentuação em português
+    setlocale(LC_ALL, "portuguese");
 
+    //Inicialmente só defini a variável "s" referente a seleção que o usiário fará no menu abaixo
     int s;
 
+    //Fiz um sistema de repetição para um menu. Não sei se será necessário, porém facilita no teste da função
     do{
 
         printf("---------------------------\n");
