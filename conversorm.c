@@ -91,7 +91,7 @@ int main(){
             break;
         }
         default:
-            printf("Valor inválido!\n1");
+            printf("Valor inválido!\n");
             break;
         }
 
