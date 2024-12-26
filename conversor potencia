@@ -1,0 +1,99 @@
+#include <stdio.h>
+
+// Definindo as constantes de conversão
+#define WATT_TO_KILOWATT 0.001
+#define WATT_TO_CV 0.00134102
+#define KILOWATT_TO_WATT 1000
+#define KILOWATT_TO_CV 1.34102
+#define CV_TO_WATT 745.7
+#define CV_TO_KILOWATT 0.7457
+
+void converterPotencia();
+
+int main() {
+    int opcao;
+
+    printf("===== Conversor de Unidades de Potência =====\n");
+    printf("1. Converter potência\n");
+    printf("0. Sair\n");
+
+    do {
+        printf("Digite sua escolha: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                converterPotencia();
+                break;
+            case 0:
+                printf("Saindo do programa.\n");
+                break;
+            default:
+                printf("Opção inválida. Tente novamente.\n");
+        }
+    } while (opcao != 0);
+
+    return 0;
+}
+
+void converterPotencia() {
+    int unidadeEntrada, unidadeSaida;
+    double valorEntrada, valorConvertido;
+
+    printf("Selecione a unidade de entrada:\n");
+    printf("1. Watts (W)\n");
+    printf("2. Quilowatts (kW)\n");
+    printf("3. Cavalos-vapor (cv/hp)\n");
+    printf("Escolha: ");
+    scanf("%d", &unidadeEntrada);
+
+    printf("Digite o valor da potência: ");
+    scanf("%lf", &valorEntrada);
+
+    printf("Selecione a unidade de saída:\n");
+    printf("1. Watts (W)\n");
+    printf("2. Quilowatts (kW)\n");
+    printf("3. Cavalos-vapor (cv/hp)\n");
+    printf("Escolha: ");
+    scanf("%d", &unidadeSaida);
+
+    // Realizando a conversão
+    switch (unidadeEntrada) {
+        case 1: // Entrada: Watts
+            if (unidadeSaida == 2)
+                valorConvertido = valorEntrada * WATT_TO_KILOWATT;
+            else if (unidadeSaida == 3)
+                valorConvertido = valorEntrada * WATT_TO_CV;
+            else
+                valorConvertido = valorEntrada;
+            break;
+
+        case 2: // Entrada: Quilowatts
+            if (unidadeSaida == 1)
+                valorConvertido = valorEntrada * KILOWATT_TO_WATT;
+            else if (unidadeSaida == 3)
+                valorConvertido = valorEntrada * KILOWATT_TO_CV;
+            else
+                valorConvertido = valorEntrada;
+            break;
+
+        case 3: // Entrada: Cavalos-vapor
+            if (unidadeSaida == 1)
+                valorConvertido = valorEntrada * CV_TO_WATT;
+            else if (unidadeSaida == 2)
+                valorConvertido = valorEntrada * CV_TO_KILOWATT;
+            else
+                valorConvertido = valorEntrada;
+            break;
+
+        default:
+            printf("Unidade de entrada inválida.\n");
+            return;
+    }
+
+    // Exibindo o resultado
+    printf("Resultado: %.2lf\n", valorConvertido);
+    printf("Pressione Enter para continuar...");
+    getchar(); // Limpa buffer
+    getchar(); // Espera tecla
+}
