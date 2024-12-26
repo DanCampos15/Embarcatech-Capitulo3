@@ -2,6 +2,69 @@
 #include <stdlib.h>
 #include <locale.h>
 
+// Função conversor de unidades de massa
+void conversormassa (){
+
+    //Variáveis: "c" para o usuário escolher a conversão, "v" para o valor que será convertido e "r" para o resultado da conversão
+    int c;
+    float v, r;
+
+        // Menu para esconha da conversão com um if para impedir valores maiores que 6
+        do{
+
+            printf("1 - g para kg\n");
+            printf("2 - g para t\n");
+            printf("3 - kg para t\n");
+            printf("4 - kg para g\n");
+            printf("5 - t para kg\n");
+            printf("6 - t para g\n");
+            scanf("%d", &c);
+
+            if(c>6){
+                printf("Valor inválido!\n");
+            }
+            else{
+            printf("Valor para converter: ");
+            scanf("%f", &v);
+            }
+        
+        }while(c>6);
+            
+            // Conversões feitas utilizando o switch
+            switch (c)
+            {
+            case 1:
+                r = v/1000;
+                break;
+
+            case 2:
+                r = v/1000000;
+                break;
+            
+            case 3:
+                r = v/1000;
+                break;
+            
+            case 4:
+                r = v*1000;
+                break;
+
+            case 5:
+                r = v*1000;
+                break;
+            
+            case 6:
+                r = v*1000000;
+            default:
+                
+                break;
+            }
+
+            printf("Valor convertido: %f\n", r);
+
+            return;
+}
+
 // Definicoes de unidades de velocidade
 #define KMH 1
 #define MS 2
@@ -197,6 +260,7 @@ int main() {
         printf("1 - Conversor de Velocidade\n");
         printf("2 - Conversor de Temperatura\n");
         printf("3 - Conversor de Volume\n");
+        printf("4 - Conversor de Massa\n");
         printf("0 - Sair\n");
         printf("Digite sua opcao: ");
         scanf("%d", &op);
@@ -235,6 +299,12 @@ int main() {
                 // Chamada para o conversor de volume
                 conversorVolume();
                 break;
+
+            case 4:
+                // Chamada para o conversor de massa
+                conversormassa();
+                break;
+                
             case 0:
                 printf("Saindo...\n");
                 return 0;
